@@ -1,0 +1,112 @@
+@mixin placeholder-color($color) {
+    &:-moz-placeholder {
+        color: $color;
+    }
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+}
+
+@mixin svgicon($path, $filename, $width: 100) {
+    $svgFullpath: $path + '/svg/' + $filename + '.svg';
+    $pngFullpath: $path + '/png/' + $filename + '.png';
+
+    $imgWidth: $width + px;
+    $imgHeight: round($width / image-width($pngFullpath) * image-height($pngFullpath)) + px;
+
+
+    background: inline-image($svgFullpath) 0 0 no-repeat;
+    width: $imgWidth;
+    height: $imgHeight;
+
+    .no-inlinesvg & {
+        background: inline-image($pngFullpath) 0 0 no-repeat;
+        background-size: $imgWidth, $imgHeight;
+        }
+    }
+
+@mixin unselectable() {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+}
+
+@mixin rs($fz: 15) {
+    display: inline-block;
+    vertical-align: top;
+    font-size: $fz+px;
+}
+
+@mixin ps($name) {
+    content: '';
+    position: absolute;
+    @include s($name);
+}
+
+@mixin psz($name) {
+    top: 0;
+    left: 0;
+    @include ps($name);
+}
+
+@mixin f($font-size: 15px, $line-height: 1.57, $font-weight: 400) {
+    font: $font-weight #{$font-size}/#{$line-height} $fSans
+}
+
+@mixin selection {
+    ::selection {
+        @content;
+    }
+    ::-moz-selection {
+        @content;
+    }
+}
+
+@mixin caret($point, $width, $height, $color) {
+    $opp: opposite-position($point);
+    content: '';
+    position: absolute;
+    border: $width solid transparent;
+    border-#{$opp}: $height solid $color;
+    border-#{$point}: 0;
+    width: 0;
+    height: 0;
+}
+
+@mixin breakpoint($point) {
+    @if $point == desktop {
+        @media (min-width: 70em) { @content ; }
+    }
+    @else if $point == laptop {
+        @media (min-width: 64em) { @content ; }
+    }
+    @else if $point == tablet {
+        @media (min-width: 50em) { @content ; }
+    }
+    @else if $point == phablet {
+        @media (min-width: 37.5em)  { @content ; }
+    }
+    @else if $point == mobileonly {
+        @media (max-width: 37.5em)  { @content ; }
+
+    }
+}
+
+@mixin spriteAbsCenter($sprite) {
+    @include ps($sprite);
+    top: 50%;
+    left: 50%;
+    margin-top: -(image-height(sprite-file($sprites, $sprite)) - image-height(sprite-file($sprites, $sprite)) / 2);
+    margin-left: -(image-width(sprite-file($sprites, $sprite)) - image-width(sprite-file($sprites, $sprite)) / 2);
+}
+
+@mixin vAlignAbs() {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

@@ -1,0 +1,55 @@
+@function rem($pxValue) {
+    @return $pxValue / $baseFontSize + rem;
+}
+
+@mixin wh($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin lt($left, $top) {
+    left: $left;
+    top: $top;
+}
+
+@mixin whAbs($width, $height) {
+    content: '';
+    position: absolute;
+    @include wh($width, $height);
+}
+
+@mixin svgBG($file) {
+//    background-image: inline-image("svg-defs/" + $file + ".svg");
+    background-image: inline-image("svg/" + $file + ".svg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+
+//    $pngFullpath: '../img/png/svg/' + $file + '.png';
+//
+//    .no-inlinesvg & {
+//        background-image: url($pngFullpath);
+//        background-size: auto;
+//    }
+}
+
+@mixin svgBGDim($file, $width, $height) {
+    @include svgBG($file);
+    @include wh($width, $height);
+}
+
+@mixin svgBGAbsDim($file, $width, $height) {
+    @include svgBG($file);
+    @include whAbs($width, $height);
+}
+
+@mixin svgBGAbs100($file) {
+    top: 0;
+    left: 0;
+    @include svgBGAbsDim($file, 100%, 100%);
+}
+
+@mixin f($fontSize, $lineHeight) {
+    font-size: $fontSize;
+    line-height: $lineHeight;
+}

@@ -1,0 +1,43 @@
+.preloader
+    position: absolute
+    display: block
+    height: 200px
+    width: 200px
+    margin: auto
+    border-radius: 100%
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 50
+    font-family: 'Montserrat', sans-serif
+    transition: all 0.6s
+
+    &._hidden
+        opacity: 0
+        pointer-events: none
+
+
+    &:after
+        position: absolute
+        display: block
+        height: 160px
+        width: 160px
+        left: 50%
+        top: 50%
+        content: attr(data-pct)"%"
+        color: #ffffff
+        margin-top: -80px
+        margin-left: -80px
+        border-radius: 100%
+        line-height: 160px
+        font-size: 2rem
+        text-align: center
+
+    #preloader-svg circle
+        stroke-dashoffset: 0
+        stroke: transparent
+        stroke-width: 5%
+
+    #preloader-svg #bar
+        stroke: #FF9F1E

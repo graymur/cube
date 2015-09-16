@@ -1,0 +1,41 @@
+html, body, h1, h2, h3, h4, h5, h6, div, p, a, img, table, thead, tbody, th, td, dl, ul, ol, li, dt, dd, form, fieldset, label, button, hr
+    margin: 0
+    padding: 0
+    border: 0
+    font-weight: normal
+
+HTML, BODY
+    width: 100%
+    height: 100%
+
+HTML
+    background-color: #000
+
+
+BODY
+    margin: 0 auto
+    font-size: 62.5%
+    color: #444
+
+    &._loaded
+        cursor: pointer
+
+.container
+    position: relative
+    width: 100%
+    height: 100%
+    overflow: hidden
+    background: #000000
+
+    &:after
+        content: ''
+        position: absolute
+        width: 100%
+        height: 100%
+        left: 0
+        top: 0
+        background-image: url(../img/stars.jpg)
+        /*background-image: url(../_.gif)*/
+        background-size: cover
+        opacity: 0.4
+        z-index: 1
