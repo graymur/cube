@@ -33,7 +33,7 @@ export default class SideView extends React.Component {
     }
 
     cycleImages() {
-        let interval = this.getRandomInt(2000, 5000);
+        let interval = this.constructor.getRandomInt(2000, 5000);
 
         clearTimeout(this.timeoutId);
 
@@ -47,7 +47,7 @@ export default class SideView extends React.Component {
         clearTimeout(this.timeoutId);
     }
 
-    getRandomInt(min, max) {
+    static getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
