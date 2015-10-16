@@ -1,4 +1,3 @@
-"use strict";
 import React from 'react';
 
 export default class SideView extends React.Component {
@@ -52,9 +51,6 @@ export default class SideView extends React.Component {
     }
 
     onMouseDown(event) {
-        //if (event.which != 1) return ;
-        console.log(event);
-
         this.mouseDownTimeout = Date.now();
     }
 
@@ -146,3 +142,5 @@ export default class SideView extends React.Component {
         );
     }
 }
+
+

@@ -12,6 +12,7 @@ var rename = require('gulp-rename');
 var compass = require('gulp-compass');
 var csso = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
+var notify = require('gulp-notify');
 
 gulp.task('js', function() {
     browserify('_src/js/app.js', { debug: true })
@@ -24,7 +25,8 @@ gulp.task('js', function() {
         .pipe(buffer())
         .pipe(uglify())
         .pipe(rename({dirname: ''}))
-        .pipe(gulp.dest('./js'));
+        .pipe(gulp.dest('./js'))
+        .pipe(notify("JS done"));
 });
 
 

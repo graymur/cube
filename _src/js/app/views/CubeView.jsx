@@ -1,5 +1,3 @@
-"use strict";
-
 import React from 'react';
 import SideView from './SideView.jsx';
 
@@ -13,6 +11,8 @@ export default class CubeView extends React.Component {
         this.step = 2;
         this.currentX = -45;
         this.currentY = 45;
+        this.currentZoom = 0.8;
+        this.zoomStep = 0.05;
 
         this.state = {
             x: -45,
@@ -65,6 +65,27 @@ export default class CubeView extends React.Component {
         this.prevY = y;
 
         this.apply();
+    }
+
+    zoom(value) {
+        this.currentZoom = value;
+        this.cube.parentNode.style.transform = 'scale(' + this.currentZoom + ')';
+    }
+
+    zoomFromMouseEvent(event) {
+        if (('detail' in event && event.detail > 0) || ('wheelDelta' in event && event.wheelDelta < 0)) {
+            this.currentZoom -= this.zoomStep;
+        } else {
+            this.currentZoom += this.zoomStep;
+        }
+
+        this.currentZoom = Math.round(this.currentZoom * 100) / 100;
+
+        if (this.currentZoom < 0.05) {
+            this.currentZoom = 0.05;
+        }
+
+        this.zoom(this.currentZoom);
     }
 
     render() {

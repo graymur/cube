@@ -1,8 +1,6 @@
-"use strict";
-
 import ImagesPreloaderQueue from './utils/ImagesPreloaderQueue.js';
-import ProgressMeter from './utils/ProgressMeter.js';
 import React from 'react';
+import ProgressMeter from './utils/ProgressMeter.js';
 import CubeView from './app/views/CubeView.jsx';
 
 let dv = console.log.bind(console);
@@ -22,10 +20,6 @@ function start() {
         progressMeter.hide();
         let cube = React.render(<CubeView images={queue.getLoaded()}/>, document.querySelector('.js-cube-container'));
 
-        //body.addEventListener ("drag", function (e) {
-        //    dv(e);
-        //});
-
         body.onmousedown = function(e) {
             isDragging = true;
         };
@@ -39,6 +33,14 @@ function start() {
         body.onmouseup = function () {
             isDragging = false;
         };
+
+        body.addEventListener('DOMMouseScroll', cube.zoomFromMouseEvent.bind(cube));
+        body.addEventListener('mousewheel', cube.zoomFromMouseEvent.bind(cube));
+
+        //body.addEventListener('DOMMouseScroll mousewheel', function (e) {
+        //    cube.zoomFromMouseEvent(e);
+        //    return false;
+        //});
     });
 
     queue.addOnAfterItemLoadCallback(() => {
