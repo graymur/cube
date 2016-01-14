@@ -15,13 +15,16 @@ var autoprefixer = require('gulp-autoprefixer');
 var notify = require('gulp-notify');
 
 gulp.task('js', function() {
-    browserify('_src/js/app.js', { debug: true })
+    browserify('_src/js/cube.js', { debug: true })
         .add(require.resolve('babel/polyfill'))
-        .transform(babelify)
+        //.transform(babelify)
+        .transform(babelify.configure({
+            ignore: /(bower_components)|(node_modules)/
+        }))
         .transform(reactify)
         .bundle()
         .on('error', util.log.bind(util, 'Browserify Error'))
-        .pipe(source('_src/js/app.js'))
+        .pipe(source('_src/js/cube.js'))
         .pipe(buffer())
         .pipe(uglify())
         .pipe(rename({dirname: ''}))

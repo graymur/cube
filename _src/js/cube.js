@@ -36,11 +36,6 @@ function start() {
 
         body.addEventListener('DOMMouseScroll', cube.zoomFromMouseEvent.bind(cube));
         body.addEventListener('mousewheel', cube.zoomFromMouseEvent.bind(cube));
-
-        //body.addEventListener('DOMMouseScroll mousewheel', function (e) {
-        //    cube.zoomFromMouseEvent(e);
-        //    return false;
-        //});
     });
 
     queue.addOnAfterItemLoadCallback(() => {
